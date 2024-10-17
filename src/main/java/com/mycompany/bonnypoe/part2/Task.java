@@ -5,6 +5,7 @@
 package com.mycompany.bonnypoe.part2;
 import java.util.ArrayList;
 import java.util.Scanner;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -19,4 +20,19 @@ public class Task {
     private int taskDuration;
     private String taskID;
     private String taskStatus;
+    
+    
+    public Task(String taskName, int taskNumber, String taskDescription,String developerDetails, int taskDuration, String taskStatus){
+        //Assigning of variables
+        this.taskName = taskName;
+        this.taskNumber = taskNumber;
+        this.taskDescription = taskDescription;
+        this.developerDetails = developerDetails;
+        this.taskDuration = taskDuration;
+        this.taskStatus = taskStatus;
+        this.taskID = generateTaskID();
+    }
+    private String generateTaskID(){
+       
+    }
 }
