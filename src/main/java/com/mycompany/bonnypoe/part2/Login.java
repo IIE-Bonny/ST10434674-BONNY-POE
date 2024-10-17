@@ -14,6 +14,7 @@ import java.util.regex.Pattern;
 public class Login {
     
       //declare variables
+         private String name = "";
         private String  username = "";
         private String  password = "";
         private String firstname = "";
@@ -41,34 +42,6 @@ public class Login {
        
        
     }
-    
-    //Message return method
-    public String RegisterUser(String firstname, String lastname, String username, String password){
-         //Initialized result variable
-        String result = "";
-        //check if username has uderscore
-        if (!checkUserName(username)){
-            //message
-            result = "The username is incorrectly formatted!";
-        }        
-        else if(!checkPasswordComplexity(password)){
-            //message
-            result = "The password does not meet the password complexity requirements"; 
-        }
-        else{
-            //message
-            result = "The user has been registered successfully";
-            //constructors
-            this.firstname = firstname;
-            this.lastname = lastname;
-            this.username = username;
-            this.password = password;
-        }
-        
-            return result;
-           
-        }
-    
     //check password complexity method
     public boolean checkPasswordComplexity(String password){
         
@@ -104,57 +77,54 @@ public class Login {
       }
       
       return hasUpperCase && hasNumber && hasSpecialChar;
-      /* 
-         //pattern regex
-        Pattern check_num = Pattern.compile(" [0123456789] ");
-        Pattern check_special = Pattern.compile(" [~`!@#$%&*()_+=';-] ");
-        Pattern check_Upper = Pattern.compile("[A-Za-z]+");
-
-        //temp variable Found
-         this.PassFound = false;
-        
-        //check all here
-        if( check_num.matcher(password).find() && check_special.matcher(password) .find() && check_Upper.matcher(password) .find() && password.length() >= 8){
-            
-            //message
-            System.out.println("Password is captured!!");
-            //assign true
-            PassFound = true;
-            
-        }else{
-               //message
-            System.out.println("Password not captured!!");
-            //assign to false
-            PassFound = false;
-         
-        }
-        
-        return PassFound;
-        */
+     
     }
     
+    
+    //Message return method
+     public String registerUser(String name, String lastname, String username, String password){
+        
+        if(!checkUserName(username)){
+        return "Username not correctly formatted";
+    }
+        
+        if(!checkPasswordComplexity(password)){
+            return "Password not correctly formatted....";
+        }
+        
+        this.name = name;
+        this.lastname = lastname;
+        this.username = username;
+        this.password = password;
+        
+        return "Both Username and password successfully captured";
+        
+    }
+    
+    public void display(){
+        System.out.println(name + "\n" + lastname + "\n" +username + "\n" + password );
+        
+    }
     public boolean loginUser(String username, String password){
-        //Initialized login_Result variable
-        boolean login_Result = false;
-        //check if username and password matches 
-        if(username.matches(username) && password.matches(password)){
-            // message
-            System.out.println("Login details match!!");
-            // assign to true
-            login_Result = true;
-            
-        }else{
-             //message
-              System.out.println("Login details do not match login details stored when registered!!");
-             //assign to false
-            login_Result = false;
-            
-        }
         
-           return login_Result;
+        
+        return username.equals(this.username) && password.equals(this.password);
+        
         
     }
     
+    public String returnLoginStatus(boolean login){
+      if(login){
+          return "Welcome" + name + " " + lastname + "it is great to see you again";
+      }  
+      return "Username or password incorrect please try again";
+    }
+    
+        
+    
+    
+    
+    /*
     public String returnLoginStatus(String firstname, String lastname, String username, String password){
        // Initialized outcome variable
         String outcome ="";
@@ -166,4 +136,7 @@ public class Login {
             }      
             return outcome;
 }
+*/
+    
+    
 }
