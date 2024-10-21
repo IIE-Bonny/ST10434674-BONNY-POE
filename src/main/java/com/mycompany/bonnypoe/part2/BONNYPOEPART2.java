@@ -19,7 +19,8 @@ public class BONNYPOEPART2 {
          //Login instance
         Login login_checks = new Login();
         
-        
+        //Task instance
+        Task task_manager = new Task();
         
            
            // object for a scanner
@@ -31,6 +32,7 @@ public class BONNYPOEPART2 {
         String Lastname = "";
         String username = "";
         String password = "";
+        int taskCount = 0;
         
           //Promting the user for username and password
           System.out.println("Enter your name");
@@ -107,6 +109,9 @@ public class BONNYPOEPART2 {
            int taskDuration = Integer.parseInt(taskDurationStr);
            
            //Ask user to choose task status from a list
+           String[] statusOptions = {"TO DO","DOING","DONE"};
+           int StatusChoice = JOptionPane.showOptionDialog(null, "Select Task Status", "Task Status", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE,null, statusOptions, statusOptions[0]);
+           
            
            
        }
