@@ -20,7 +20,7 @@ public class BONNYPOEPART2 {
         Login login_checks = new Login();
         
         //Task instance
-        Task task_manager = new Task();
+        
         
            
            // object for a scanner

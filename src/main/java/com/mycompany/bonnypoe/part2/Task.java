@@ -59,14 +59,11 @@ public class Task {
                 + "\nDuration: " + taskDuration + "\nhours\nstatus: " + taskStatus;
         
     }
-    //Determine status based on user choice
-           String taskStatus = statusOptions[StatusChoice];
-           
-           //Create a new task and add to the list of tasks
-           Task newTask = new Task(taskName,tasks.size(), taskDescription, developerDetails, taskDuration, taskStatus);
-           //Add the task to the list
-           tasks.add(newTask);
-           
-           //
-           JOptionPane.showMessageDialog(null, "Task added:\n" + newTask, "Task Added",JOptionPane.INFORMATION_MESSAGE);
+    public static void addTasks(){
+        //Ask user how many tasks they want to add
+        String taskCounterStr = JOptionPane.showInputDialog("How many tasks would you like to add?");
+        //Convert input to integer
+        int taskCount = Integer.parseInt(taskCounterStr);   
+    }
+    
 }
