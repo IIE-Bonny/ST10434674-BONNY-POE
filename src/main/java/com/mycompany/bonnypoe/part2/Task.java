@@ -25,19 +25,22 @@ public class Task {
     private static int taskCounter = 0;
     
     //Constructor to initialize all task details and generate the task ID
-    public Task(String taskName, int taskNumber, String taskDescription,String developerDetails, int taskDuration, String taskStatus){
+    public Task(String taskName,  String taskDescription,String developerDetails, int taskDuration, String taskStatus){
         //Assigning of variables
         this.taskName = taskName;
-        this.taskNumber = taskNumber;
+        //this.taskNumber = taskNumber;
         this.taskDescription = taskDescription;
         this.developerDetails = developerDetails;
         this.taskDuration = taskDuration;
         this.taskStatus = taskStatus;
         this.taskID = createTaskID();
     }
+    public Task(){
+        
+    }
     //Task method
     //This method ensures that the task description is no more than 50 characters
-    private boolean checkTaskDescription(){
+    public boolean checkTaskDescription(){
         if(taskDescription.length() > 50){
              JOptionPane.showMessageDialog(null, "Description too long.", "Please enter task description of less than 50 characters", JOptionPane.WARNING_MESSAGE);
                taskDescription = taskDescription.substring(0, 50);
@@ -47,7 +50,7 @@ public class Task {
     }
     //Generates Task ID in the formate of-
     //first 2 letters of task name:task number:last 3 letters of the developer
-    private String createTaskID(){
+    public String createTaskID(){
        String taskNamePart;
        String developerPart;
        if(taskName.length() >= 2){
@@ -64,7 +67,7 @@ public class Task {
     }
     //Returns the task information as a formatted string
     //This method returns the full task details of each task
-    public String printTaskDetails(){
+    public String printTaskDetails(String taskName, String taskDescription, String developerDetails,int  taskDuration, String taskStatus){
         return "Task ID:" + taskID + "\nTask Name:" 
                 + taskName + "\nTaskNumber: " 
                 + taskNumber +"\nTaskDescription: " 
@@ -72,9 +75,15 @@ public class Task {
                 + "\nDuration: " + taskDuration + "\nhours\nstatus: " + taskStatus;
         
     } 
+    
+   
+        
+        
     //returnTotalHours method
     //This method returns the total combined houurs of all tasks
-    private int returnTotalHours(){
+    public int returnTotalHours(){
+        taskDuration = 0;
+        
         return taskDuration;
     }
 }
