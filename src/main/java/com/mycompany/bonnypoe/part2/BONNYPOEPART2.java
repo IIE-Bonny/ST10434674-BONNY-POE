@@ -18,11 +18,7 @@ public class BONNYPOEPART2 {
      
          //Login instance
         Login login_checks = new Login();
-        
-        //Task instance
-        
-        
-           
+              
            // object for a scanner
         Scanner sc = new Scanner(System.in);
        
@@ -33,6 +29,8 @@ public class BONNYPOEPART2 {
         String username = "";
         String password = "";
         int taskCount = 0;
+        
+        
         
           //Promting the user for username and password
           System.out.println("Enter your name");
@@ -70,18 +68,18 @@ public class BONNYPOEPART2 {
            //Main loop to keep the application running until the user quits
            while(convertedBoolean){
         String[] option = {"Add Tasks","Show Report(Coming Soon)","Quit"};
-        int choice = JOptionPane.showOptionDialog(null, "Choose an option", "Menu", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options, options[0]);
+        int choice = JOptionPane.showOptionDialog(null, "Choose an option", "Menu", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, option, option[0]);
         
         switch(choice){
-            case 0:
-                //User selected "Add Task"
-                addTask();
-                break;
             case 1:
+                //User selected "Add Task"
+                createTaskID();
+                break;
+            case 2:
                 //User selected "Show Report",which is not yet available
                 JOptionPane.showMessageDialog(null, "Coming Soon", "Report", JOptionPane.INFORMATION_MESSAGE);
                 break;
-            case 2:
+            case 3:
                 //User selected "Quit", exit the loop
                 convertedBoolean = false;
                 JOptionPane.showMessageDialog(null, "Exiting EasyKanban\n Goodbye", "Exit", JOptionPane.INFORMATION_MESSAGE);
@@ -96,10 +94,7 @@ public class BONNYPOEPART2 {
            
            //Get taskDescription and ensure its not longer than 50 characters
            String taskDescription = JOptionPane.showInputDialog("Enter Task Description(max 50 characters):");
-           if(taskDescription.length() > 50){
-               JOptionPane.showMessageDialog(null, "Description too long.", "Warning", JOptionPane.WARNING_MESSAGE);
-               taskDescription = taskDescription.substring(0, 50);
-           }
+           
            //Get developer details
            String developerDetails = JOptionPane.showInputDialog("Enter Developer's Frst and Last Name: ");
            
@@ -115,5 +110,34 @@ public class BONNYPOEPART2 {
            
            
        }
+
+        int numTasks = Integer.parseInt(JOptionPane.showInputDialog("Enter number of tasks:"));
+        Task[] tasks = new Task[numTasks];
+        
+        //Collect task details and create tasks
+        for(int i = 0; i < numTasks; i++){
+            String taskName = JOptionPane.showInputDialog("Enter task Name: ");
+            String taskDescription = JOptionPane.showInputDialog("Enter Task Description(max 50 characters): ");
+            
+            //Validate task description length
+            while(taskDescription.length() > 50){
+                taskDescription = JOptionPane.showInputDialog("Task description is too long. Please enter a description less than 50 characters: ");
+            }
+            String developerDetails = JOptionPane.showInputDialog("Enter Developer's Name: ");
+            int taskDuration = Integer.parseInt(JOptionPane.showInputDialog("Enter Task Duration(in hours):"));
+            String taskStatus = JOptionPane.showInputDialog("Enter Task Status(TO DO, DONE, DOING): ");
+            
+            //Create a new task object and store it in the array
+            tasks[i] = new Task(String taskName, String taskDescription, String developerDetails, int taskDuration, String taskStatus);
+            
+            //Display the task details
+            JOptionPane.showMessageDialog(null, tasks[i].printTaskDetails());
+        }
+        //Calculate the total duration of all tasks
+        int totalDuration = 0;
+        for(Task task : tasks){
+            totalDuration += taskDuration;
+        }
+        JOptionPane.showMessageDialog(null, "Total task Duration: " + totalDuration + "hours");
     }
 }
