@@ -32,6 +32,7 @@ public class BONNYPOEPART2 {
         String name = JOptionPane.showInputDialog("Enter your name");
         String Lastname = JOptionPane.showInputDialog("Enter your lastname");
         
+        
        
 
         //use do while
@@ -47,6 +48,17 @@ public class BONNYPOEPART2 {
             password = JOptionPane.showInputDialog("Create a password");
         } while (!login_checks.checkPasswordComplexity(password));
         
+        String registerMessage = login_checks.registerUser(name, Lastname, username, password);
+        JOptionPane.showMessageDialog(null, registerMessage);
+        
+        if(registerMessage.equalsIgnoreCase("User registered successfully")){
+            String loginUsername = JOptionPane.showInputDialog("Enter your username to log in:");
+            String loginPassword = JOptionPane.showInputDialog("Enter your password to log in:");
+            
+            String loginMessage = login_checks.loginUser(username, password);
+            
+            JOptionPane.showMessageDialog(null, loginMessage);
+        }
          //Task instance
         Task task_manager = new Task();
 

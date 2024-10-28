@@ -113,20 +113,36 @@ public class LoginTest {
         String username = "";
         String password = "";
         Login instance = new Login();
-        boolean expResult = true;
-        boolean result = instance.loginUser(username, password);
-        assertEquals(expResult, result);
+        String expResult = "Username or password incorrect, please try again.";
+        String result = instance.loginUser(username, password);
+        
+        String  found = "Not found";
+        String finalResult = "found";
+        if(result != expResult){
+            found = "found";
+        }
+        
+        
+        assertEquals(finalResult, found);
         
     }
     @Test
     public void testInvalidLoginUser() {
-        System.out.println("loginUser");
+       System.out.println("loginUser");
         String username = "";
         String password = "";
         Login instance = new Login();
-        boolean expResult = false;
-        boolean result = instance.loginUser(username, password);
-        assertEquals(expResult, result);
+        String expResult = "Username or password incorrect, please try again.";
+        String result = instance.loginUser(username, password);
+        
+        String  found = "Not found";
+        String finalResult = "found";
+        if(result == expResult){
+            found = "found";
+        }
+        
+        
+        assertEquals(finalResult, found);
         
     }
 

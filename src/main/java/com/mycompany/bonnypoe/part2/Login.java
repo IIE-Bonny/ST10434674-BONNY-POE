@@ -17,10 +17,12 @@ public class Login {
          private String name = "";
         private String  username = "";
         private String  password = "";
-        private String firstname = "";
-        private String lastname = "";
+        private String FirstName = "";
+        private String LastName = "";
         private boolean UserFound = false;
         private boolean PassFound = false;
+        private String user;
+        User collect = new User();
     
     
     //check username method
@@ -81,6 +83,7 @@ public class Login {
     }
     
     
+    
     //Message return method
      public String registerUser(String name, String lastname, String username, String password){
         
@@ -92,51 +95,41 @@ public class Login {
             return "Password not correctly formatted....";
         }
         
-        this.name = name;
-        this.lastname = lastname;
-        this.username = username;
-        this.password = password;
+           collect.userDetails(username, password, FirstName, LastName);
         
+//        this.name = name;
+//        this.lastname = lastname;
+//        this.username = username;
+//        this.password = password;
+//        
         return "Both Username and password successfully captured";
         
     }
+     
+     public  String loginUser(String username, String password){
+        if( collect.getUsername().equalsIgnoreCase(username) && collect.getPassword().equals(password)){
+            return "Welcome" + collect.getFirstName() + " " + collect.getLastName() + ", it is great to see you again.";
+        }
+        return "Username or password incorrect, please try again.";
+    }
     
     public void display(){
-        System.out.println(name + "\n" + lastname + "\n" +username + "\n" + password );
+        System.out.println(name + "\n" + LastName + "\n" +username + "\n" + password );
         
     }
-    public boolean loginUser(String username, String password){
-        
-        
-        return username.equals(this.username) && password.equals(this.password);
-        
-        
-    }
+//    public boolean loginUser(String username, String password){
+//        
+//        
+//        return username.equals(this.username) && password.equals(this.password);
+//        
+//        
+//    }
     
     public String returnLoginStatus(boolean login){
       if(login){
-          return "Welcome" + name + " " + lastname + "it is great to see you again";
+          return "Welcome" + name + " " + LastName + "it is great to see you again";
       }  
       return "Username or password incorrect please try again";
     }
-    
-        
-    
-    
-    
-    /*
-    public String returnLoginStatus(String firstname, String lastname, String username, String password){
-       // Initialized outcome variable
-        String outcome ="";
-        //check if login is successful
-        if(loginUser(username, password)){
-        outcome = "A successful Login, Welcome "+firstname+lastname;
-        }else{
-        outcome  = "A failed Login";
-            }      
-            return outcome;
 }
-*/
     
-    
-}
