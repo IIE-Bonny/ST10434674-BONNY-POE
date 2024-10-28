@@ -13,31 +13,18 @@ import javax.swing.*;
  */
 public class Task {
     //Declaration of task variables
-    private String taskName;
-    private int taskNumber;
-    private String taskDescription;
-    private String developerDetails;
-    private int taskDuration;
-    private String taskID;
-    private String taskStatus;
+    public String taskName="";
+    public int taskNumber= 0;
+    public String taskDescription = "";
+    public String developerDetails = "";
+    public int taskDuration = 0;
+    public String taskID = "";
+    public String taskStatus = "";
     
     //Counter to auto-generate task numbers
     private static int taskCounter = 0;
     
-    //Constructor to initialize all task details and generate the task ID
-    public Task(String taskName,  String taskDescription,String developerDetails, int taskDuration, String taskStatus){
-        //Assigning of variables
-        this.taskName = taskName;
-        //this.taskNumber = taskNumber;
-        this.taskDescription = taskDescription;
-        this.developerDetails = developerDetails;
-        this.taskDuration = taskDuration;
-        this.taskStatus = taskStatus;
-        this.taskID = createTaskID();
-    }
-    public Task(){
-        
-    }
+
     //Task method
     //This method ensures that the task description is no more than 50 characters
     public boolean checkTaskDescription(){

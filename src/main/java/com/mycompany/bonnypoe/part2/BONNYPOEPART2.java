@@ -51,34 +51,22 @@ public class BONNYPOEPART2 {
         String registerMessage = login_checks.registerUser(name, Lastname, username, password);
         JOptionPane.showMessageDialog(null, registerMessage);
         
-        if(registerMessage.equalsIgnoreCase("User registered successfully")){
+        if(registerMessage.equals("Both Username and password successfully captured")){
             String loginUsername = JOptionPane.showInputDialog("Enter your username to log in:");
             String loginPassword = JOptionPane.showInputDialog("Enter your password to log in:");
             
             String loginMessage = login_checks.loginUser(username, password);
             
             JOptionPane.showMessageDialog(null, loginMessage);
-        }
-         //Task instance
+            
+            
+              //Task instance
         Task task_manager = new Task();
-
-        //Display Welcome message
-        JOptionPane.showMessageDialog(null, "Welcome to EasyKanban!", "EasyKanban", JOptionPane.INFORMATION_MESSAGE);
-
-        String booleanString = login_checks.returnLoginStatus(true);
-        //Use of Boolean.parseBoolean() to convert thestring to a boolean
-        //The parseBoolean() method checks the string and converts it to a boolean.
-        //If the string is exactly "true" (ignoring case), it return true.
-        boolean convertedBoolean = Boolean.parseBoolean(booleanString);
-
-        //Use the converted boolean in an if statement
-        //This checks the value of the converted boolean and executes
-        //Display menu after user has logged in
-        if (convertedBoolean) {
-            //Main loop to keep the application running until the user quits
-            while (convertedBoolean) {
+        boolean convertedBoolean=true;int choice =0;
+              //Main loop to keep the application running until the user quits
+       
                 String[] option = {"Add Tasks", "Show Report(Coming Soon)", "Quit"};
-                int choice = JOptionPane.showOptionDialog(null, "Choose an option", "Menu", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, option, option[0]);
+             choice = JOptionPane.showOptionDialog(null, "Choose an option", "Menu", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, option, option[0]);
 
                 switch (choice) {
                     case 1:
@@ -89,23 +77,27 @@ public class BONNYPOEPART2 {
 
                         //Collect task details and create tasks
                         for (int i = 0; i < numTasks; i++) {
-                            String taskName = JOptionPane.showInputDialog("Enter task Name: ");
-                            String taskDescription = JOptionPane.showInputDialog("Enter Task Description(max 50 characters): ");
+                            task_manager.taskName= JOptionPane.showInputDialog("Enter task Name: ");
+                           task_manager.taskDescription = JOptionPane.showInputDialog("Enter Task Description(max 50 characters): ");
 
                             //Validate task description length
-                            while (taskDescription.length() > 50) {
-                                taskDescription = JOptionPane.showInputDialog("Task description is too long. Please enter a description less than 50 characters: ");
-                            }
-                            String developerDetails = JOptionPane.showInputDialog("Enter Developer's Name: ");
-                            int taskDuration = Integer.parseInt(JOptionPane.showInputDialog("Enter Task Duration(in hours):"));
-                            String taskStatus = JOptionPane.showInputDialog("Enter Task Status(TO DO, DONE, DOING): ");
+                          do{
+                                task_manager.taskDescription = JOptionPane.showInputDialog("Task description is too long. Please enter a description less than 50 characters: ");
+                            }  while (task_manager.taskDescription.length() > 50);
+                            task_manager. developerDetails = JOptionPane.showInputDialog("Enter Developer's Name: ");
+                            task_manager. taskDuration = Integer.parseInt(JOptionPane.showInputDialog("Enter Task Duration(in hours):"));
+                            task_manager. taskStatus = JOptionPane.showInputDialog("Enter Task Status(TO DO, DONE, DOING): ");
 
-                            Task task_details = new Task(taskName, taskDescription, developerDetails, taskDuration, taskStatus);
+                            //Task task_details = new Task();
+                            
+                            
                             //add to array list
-                            task.add(task_details);
-
+                          //  task_details.Tasks(taskName, taskDescription, developerDetails, taskDuration, taskStatus);
+                          
+//                            //call constructor
+//                            Task obj = new Task();
                             //Display the task details
-                            JOptionPane.showMessageDialog(null, task_manager.printTaskDetails(taskName, taskDescription, developerDetails, taskDuration, taskStatus));
+                            JOptionPane.showMessageDialog(null, task_manager.printTaskDetails(task_manager.taskName,task_manager. taskDescription, task_manager.developerDetails,task_manager. taskDuration, task_manager.taskStatus));
                 }
                         ;
 
@@ -123,15 +115,13 @@ public class BONNYPOEPART2 {
                         JOptionPane.showMessageDialog(null, "Invalid Option\n try again\n");
 
                 }
-            }
+            
+           
         }
-
-        //call constructor
+       
         
-        //task id
-        task_manager.createTaskID();
-        //hours
-        task_manager.returnTotalHours();
+
+
         //Calculate the total duration of all tasks
         int totalDuration = 0;
         //for(Task task : tasks){
