@@ -18,38 +18,37 @@ public class BONNYPOEPART2 {
         //Login instance
         Login login_checks = new Login();
 
-        //Task instance
-        Task task_manager = new Task();
+       
 
         // object for a scanner
         Scanner sc = new Scanner(System.in);
 
         //declare variables
-        String name = "";
-        String Lastname = "";
-        String username = "";
-        String password = "";
+        String username;
+        String password;
         int taskCount = 0;
 
         //Promting the user for username and password
-        System.out.println("Enter your name");
-        name = sc.nextLine();
-        System.out.println("Enter your lastname");
-        Lastname = sc.nextLine();
+        String name = JOptionPane.showInputDialog("Enter your name");
+        String Lastname = JOptionPane.showInputDialog("Enter your lastname");
+        
+       
 
         //use do while
         do {
             //prompt
-            System.out.println("Create a username");
-            username = sc.nextLine();
+            //System.out.println("Create a username");
+            username = JOptionPane.showInputDialog("Create a username");
         } while (!login_checks.checkUserName(username));
 
         //user do while for password
         do {
             //prompt
-            System.out.println("Enter password: ");
-            password = sc.nextLine();
+            password = JOptionPane.showInputDialog("Create a password");
         } while (!login_checks.checkPasswordComplexity(password));
+        
+         //Task instance
+        Task task_manager = new Task();
 
         //Display Welcome message
         JOptionPane.showMessageDialog(null, "Welcome to EasyKanban!", "EasyKanban", JOptionPane.INFORMATION_MESSAGE);
@@ -63,58 +62,64 @@ public class BONNYPOEPART2 {
         //Use the converted boolean in an if statement
         //This checks the value of the converted boolean and executes
         //Display menu after user has logged in
-//        if (convertedBoolean) {
-//            //Main loop to keep the application running until the user quits
-//            while (convertedBoolean) {
-//                String[] option = {"Add Tasks", "Show Report(Coming Soon)", "Quit"};
-//                int choice = JOptionPane.showOptionDialog(null, "Choose an option", "Menu", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, option, option[0]);
-//
-//                switch (choice) {
-//                    case 1:
-//                        //User selected "Add Task"
-//                        int numTasks = Integer.parseInt(JOptionPane.showInputDialog("Enter number of tasks:"));
-//                        Task[] tasks = new Task[numTasks];
-//                        ArrayList<Task> task = new ArrayList<Task>();
-//
-//                        //Collect task details and create tasks
-//                        for (int i = 0; i < numTasks; i++) {
-//                            String taskName = JOptionPane.showInputDialog("Enter task Name: ");
-//                            String taskDescription = JOptionPane.showInputDialog("Enter Task Description(max 50 characters): ");
-//
-//                            //Validate task description length
-//                            while (taskDescription.length() > 50) {
-//                                taskDescription = JOptionPane.showInputDialog("Task description is too long. Please enter a description less than 50 characters: ");
-//                            }
-//                            String developerDetails = JOptionPane.showInputDialog("Enter Developer's Name: ");
-//                            int taskDuration = Integer.parseInt(JOptionPane.showInputDialog("Enter Task Duration(in hours):"));
-//                            String taskStatus = JOptionPane.showInputDialog("Enter Task Status(TO DO, DONE, DOING): ");
-//
-//                            Task task_details = new Task(taskName, taskDescription, developerDetails, taskDuration, taskStatus);
-//                            //add to array list
-//                            task.add(task_details);
-//
-//                            //Display the task details
-//                            JOptionPane.showMessageDialog(null, task_manager.printTaskDetails(taskName, taskDescription, developerDetails, taskDuration, taskStatus));
-//                        }
-//                        ;
-//
-//                        break;
-//                    case 2:
-//                        //User selected "Show Report",which is not yet available
-//                        JOptionPane.showMessageDialog(null, "Coming Soon", "Report", JOptionPane.INFORMATION_MESSAGE);
-//                        break;
-//                    case 3:
-//                        //User selected "Quit", exit the loop
-//                        convertedBoolean = false;
-//                        JOptionPane.showMessageDialog(null, "Exiting EasyKanban\n Goodbye", "Exit", JOptionPane.INFORMATION_MESSAGE);
-//
-//                }
-//            }
-//        }
+        if (convertedBoolean) {
+            //Main loop to keep the application running until the user quits
+            while (convertedBoolean) {
+                String[] option = {"Add Tasks", "Show Report(Coming Soon)", "Quit"};
+                int choice = JOptionPane.showOptionDialog(null, "Choose an option", "Menu", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, option, option[0]);
+
+                switch (choice) {
+                    case 1:
+                        //User selected "Add Task"
+                        int numTasks = Integer.parseInt(JOptionPane.showInputDialog("Enter number of tasks:"));
+                        Task[] tasks = new Task[numTasks];
+                        ArrayList<Task> task = new ArrayList<Task>();
+
+                        //Collect task details and create tasks
+                        for (int i = 0; i < numTasks; i++) {
+                            String taskName = JOptionPane.showInputDialog("Enter task Name: ");
+                            String taskDescription = JOptionPane.showInputDialog("Enter Task Description(max 50 characters): ");
+
+                            //Validate task description length
+                            while (taskDescription.length() > 50) {
+                                taskDescription = JOptionPane.showInputDialog("Task description is too long. Please enter a description less than 50 characters: ");
+                            }
+                            String developerDetails = JOptionPane.showInputDialog("Enter Developer's Name: ");
+                            int taskDuration = Integer.parseInt(JOptionPane.showInputDialog("Enter Task Duration(in hours):"));
+                            String taskStatus = JOptionPane.showInputDialog("Enter Task Status(TO DO, DONE, DOING): ");
+
+                            Task task_details = new Task(taskName, taskDescription, developerDetails, taskDuration, taskStatus);
+                            //add to array list
+                            task.add(task_details);
+
+                            //Display the task details
+                            JOptionPane.showMessageDialog(null, task_manager.printTaskDetails(taskName, taskDescription, developerDetails, taskDuration, taskStatus));
+                }
+                        ;
+
+                        break;
+                    case 2:
+                        //User selected "Show Report",which is not yet available
+                        JOptionPane.showMessageDialog(null, "Coming Soon", "Report", JOptionPane.INFORMATION_MESSAGE);
+                        break;
+                    case 3:
+                        //User selected "Quit", exit the loop
+                       convertedBoolean = false;
+                        JOptionPane.showMessageDialog(null, "Exiting EasyKanban\n Goodbye", "Exit", JOptionPane.INFORMATION_MESSAGE);
+                        break;
+                    default:
+                        JOptionPane.showMessageDialog(null, "Invalid Option\n try again\n");
+
+                }
+            }
+        }
 
         //call constructor
+        
         //task id
+        task_manager.createTaskID();
         //hours
+        task_manager.returnTotalHours();
         //Calculate the total duration of all tasks
         int totalDuration = 0;
         //for(Task task : tasks){
