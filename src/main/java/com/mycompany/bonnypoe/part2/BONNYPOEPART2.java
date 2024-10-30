@@ -25,7 +25,7 @@ public class BONNYPOEPART2 {
         //declare variables
         String username;
         String password;
-        int taskCount = 0;
+        
         
        
 
@@ -83,40 +83,7 @@ public class BONNYPOEPART2 {
                 switch (choice) {
                     case 1:
                         //User selected "Add Task"
-                        int numTasks = Integer.parseInt(JOptionPane.showInputDialog("Enter number of tasks:"));
-                        
-                        ArrayList<Task> task = new ArrayList<>();
-                        int totalHours = 0;
-                        totalHours +=  task_manager. Duration;
-                        //numTasks = task_manager.taskDuration;
-                       
-
-                        //Collect task details and create tasks
-                        for (int i = 0; i < numTasks; i++) {
-                            task_manager.taskName= JOptionPane.showInputDialog("Enter task Name: ");
-                           task_manager.taskDescription = JOptionPane.showInputDialog("Enter Task Description(max 50 characters): ");
-
-                            //Validate task description length
-                          do{
-                                //task_manager.taskDescription = JOptionPane.showInputDialog("Task description is too long. Please enter a description less than 50 characters: ");
-                            }  while (task_manager.taskDescription.length() > 50);
-                            task_manager. developerDetails = JOptionPane.showInputDialog("Enter Developer's Name: ");
-                            task_manager. Duration = Integer.parseInt(JOptionPane.showInputDialog("Enter Task Duration\n(in hours):"));
-                            task_manager. taskStatus = JOptionPane.showInputDialog("Enter Task Status(TO DO, DONE, DOING): ");
-
-                            //Task task_details = new Task();
-                            
-                            
-                            //add to array list
-                          //  task_details.Tasks(taskName, taskDescription, developerDetails, taskDuration, taskStatus);
-                          
-//                            //call constructor
-//                            Task obj = new Task();
-                            //Display the task details
-                            JOptionPane.showMessageDialog(null, task_manager.printTaskDetails(task_manager.taskName,task_manager. taskDescription, task_manager.developerDetails,task_manager.Duration, task_manager.taskStatus));
-                }
-                        ;
-
+                        addTasks();
                         break;
                     case 2:
                         //User selected "Show Report",which is not yet available
@@ -138,10 +105,55 @@ public class BONNYPOEPART2 {
         }
        
         
-         Task task_manager = new Task();
 
-        //Calculate the total duration of all tasks
-         JOptionPane.showMessageDialog(null, "The total duration is:" + task_manager.returnTotalHours());
          
     }
+    private static void addTasks(){
+        int numTasks = Integer.parseInt(JOptionPane.showInputDialog("Enter number of tasks:"));
+        ArrayList<Task> task = new ArrayList<>();
+        int totalHours = 0;
+        
+                        //numTasks = task_manager.taskDuration;
+                       
+
+                        //Collect task details and create tasks
+                        for (int i = 0; i < numTasks; i++) {
+                           Task task_manager = new Task();
+                           task_manager.taskName= JOptionPane.showInputDialog("Enter task Name: ");
+                           do{
+                           task_manager.taskDescription = JOptionPane.showInputDialog("Enter Task Description(max 50 characters): ");
+                           if(task_manager.taskDescription.length() >50){
+                               task_manager.taskDescription = JOptionPane.showInputDialog("Description too long.", "Please enter task description of less than 50 characters");
+                           }else{
+                               JOptionPane.showMessageDialog(null, "Task successfully captured.");
+                               break;
+                           }
+                           }while (task_manager.taskDescription.length() > 50);
+                           
+
+                            //Validate task description length
+                            task_manager. developerDetails = JOptionPane.showInputDialog("Enter Developer's Name: ");
+                            int Duration = Integer.parseInt(JOptionPane.showInputDialog("Enter Task Duration\n(in hours):"));
+                           
+                            task_manager. taskStatus = JOptionPane.showInputDialog("Enter Task Status(TO DO, DONE, DOING): ");
+
+                            //Task task_details = new Task();
+                            
+                            task.add(task_manager);
+                            totalHours +=  Duration;
+                            
+                            //add to array list
+                          //  task_details.Tasks(taskName, taskDescription, developerDetails, taskDuration, taskStatus);
+                          
+//                            //call constructor
+//                            Task obj = new Task();
+                            //Display the task details
+                            JOptionPane.showMessageDialog(null, task_manager.printTaskDetails(task_manager.taskName,task_manager. taskDescription, task_manager.taskID, task_manager.developerDetails,task_manager.Duration, task_manager.taskStatus));
+                            
+                            JOptionPane.showMessageDialog(null, "The total duration is:" + totalHours);
+     
+                        }
+    }
 }
+                                      
+  

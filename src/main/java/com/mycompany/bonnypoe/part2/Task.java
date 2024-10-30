@@ -15,37 +15,29 @@ import javax.swing.*;
 public class Task {
     //Declaration of task variables
     public String taskName="";
-    public int taskNumber= 0;
+    public int taskNumber;
     public String taskDescription = "";
     public String developerDetails = "";
-    public double Duration = 0;
-    public int totalDuration = 0;
-    public int numTasks = 0;
-    public String taskID = "";
+    public int Duration;
+    public int numTasks;
+    public String taskID;
     public String taskStatus = "";
     
-    //Counter to auto-generate task numbers
-    private static int taskCounter = 0;
+    public Task(){
+        this.Duration = Duration;
+        this.taskID = taskID;
+    }
     
-
-    //Task method
+    
+        //Task method
     //This method ensures that the task description is no more than 50 characters
     public boolean checkTaskDescription(){
-        if(taskDescription.length() > 50){
-             JOptionPane.showMessageDialog(null, "Description too long.", "Please enter task description of less than 50 characters", JOptionPane.WARNING_MESSAGE);
-               taskDescription = taskDescription.substring(0, 50);
-        }
-       
-       return true;   
+      return taskDescription.length() > 50;   
     }
     //Generates Task ID in the formate of-
     //first 2 letters of task name:task number:last 3 letters of the developer
     public String createTaskID(){
-       String taskNamePart;
-       String developerPart;
-       
-       taskNamePart = taskName.substring(0,2).toUpperCase();
-        developerPart = developerDetails.substring(developerDetails.length() - 3).toUpperCase();
+       taskID = taskName.substring(0,2).toUpperCase() + ":" +  taskNumber + ":" + developerDetails.substring(developerDetails.length() - 3).toUpperCase();
 //       if(taskName.length() >= 2 && developerDetails.length() >= 50 ){
 //            taskNamePart = taskName.substring(0,2).toUpperCase();
 //            //taskNamePart = taskName.toUpperCase();
@@ -54,14 +46,12 @@ public class Task {
 //       }else{
 //          JOptionPane.showMessageDialog(null, "Error encountered while formatting task ID");
 //       }if(taskName.length() >= 2 && developerDetails.length() >= 50 ){
-//       
-
-       
-        return taskNamePart + ":" + taskNumber + ":" + developerPart;
+//
+        return taskID;
     }
     //Returns the task information as a formatted string
     //This method returns the full task details of each task
-    public String printTaskDetails(String taskName, String taskDescription, String developerDetails,double  Duration, String taskStatus){
+    public String printTaskDetails(String taskName, String taskDescription,String taskID, String developerDetails,int  Duration, String taskStatus){
         return "Task ID:" + taskID + "\nTask Name:" 
                 + taskName + "\nTaskNumber: " 
                 + taskNumber +"\nTaskDescription: " 
@@ -71,11 +61,10 @@ public class Task {
     } 
     
    
-        private static List<Integer> totalTaskDuration = new ArrayList<>();
+        //private static List<Integer> totalTaskDuration = new ArrayList<>();
     //returnTotalHours method
     //This method returns the total combined houurs of all tasks
-    public double returnTotalHours(){
-        
+    public int returnTotalHours(){
         
             return  Duration;
         }
