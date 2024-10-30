@@ -14,18 +14,23 @@ import javax.swing.*;
  */
 public class Task {
     //Declaration of task variables
-    public String taskName="";
+    public String taskName;
     public int taskNumber;
-    public String taskDescription = "";
-    public String developerDetails = "";
+    public String taskDescription;
+    public String developerDetails;
     public int Duration;
     public int numTasks;
     public String taskID;
-    public String taskStatus = "";
+    public String taskStatus;
     
-    public Task(){
+    public Task(String taskName, int taskNumber, String taskDescription, String developerDetails, int Duration, String taskStatus){
+        this.taskName = taskName;
+        this.taskNumber = taskNumber;
+        this.taskDescription = taskDescription;
+        this.developerDetails = developerDetails;
         this.Duration = Duration;
-        this.taskID = taskID;
+        this.taskID = createTaskID();
+        this.taskStatus = taskStatus;
     }
     
     
@@ -37,7 +42,7 @@ public class Task {
     //Generates Task ID in the formate of-
     //first 2 letters of task name:task number:last 3 letters of the developer
     public String createTaskID(){
-       taskID = taskName.substring(0,2).toUpperCase() + ":" +  taskNumber + ":" + developerDetails.substring(developerDetails.length() - 3).toUpperCase();
+       String taskID = taskName.substring(0,2).toUpperCase() + ":" +  taskNumber + ":" + developerDetails.substring(developerDetails.length() - 3).toUpperCase();
 //       if(taskName.length() >= 2 && developerDetails.length() >= 50 ){
 //            taskNamePart = taskName.substring(0,2).toUpperCase();
 //            //taskNamePart = taskName.toUpperCase();
@@ -51,9 +56,8 @@ public class Task {
     }
     //Returns the task information as a formatted string
     //This method returns the full task details of each task
-    public String printTaskDetails(String taskName, String taskDescription,String taskID, String developerDetails,int  Duration, String taskStatus){
-        return "Task ID:" + taskID + "\nTask Name:" 
-                + taskName + "\nTaskNumber: " 
+    public String printTaskDetails(){
+        return "Task ID:" + taskID + "\nTask Name:"  
                 + taskNumber +"\nTaskDescription: " 
                 + taskDescription + "\nDeveloper: " +developerDetails 
                 + "\nDuration: " + Duration + "\nhours\nstatus: " + taskStatus;

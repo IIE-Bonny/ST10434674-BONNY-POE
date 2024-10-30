@@ -61,9 +61,7 @@ public class BONNYPOEPART2 {
             JOptionPane.showMessageDialog(null, loginMessage);
             
             
-              //Task instance
-        Task task_manager = new Task();
-        
+                
         boolean convertedBoolean=true;int choice =0;
               //Main loop to keep the application running until the user quits
        
@@ -118,29 +116,33 @@ public class BONNYPOEPART2 {
 
                         //Collect task details and create tasks
                         for (int i = 0; i < numTasks; i++) {
-                           Task task_manager = new Task();
-                           task_manager.taskName= JOptionPane.showInputDialog("Enter task Name: ");
+                           
+                           String taskName= JOptionPane.showInputDialog("Enter task Name: ");
+                           String taskDescription;
                            do{
-                           task_manager.taskDescription = JOptionPane.showInputDialog("Enter Task Description(max 50 characters): ");
-                           if(task_manager.taskDescription.length() >50){
-                               task_manager.taskDescription = JOptionPane.showInputDialog("Description too long.", "Please enter task description of less than 50 characters");
+                           taskDescription = JOptionPane.showInputDialog("Enter Task Description(max 50 characters): ");
+                           if(taskDescription.length() >50){
+                               taskDescription = JOptionPane.showInputDialog("Description too long.", "Please enter task description of less than 50 characters");
                            }else{
                                JOptionPane.showMessageDialog(null, "Task successfully captured.");
                                break;
                            }
-                           }while (task_manager.taskDescription.length() > 50);
+                           }while (taskDescription.length() > 50);
                            
 
                             //Validate task description length
-                            task_manager. developerDetails = JOptionPane.showInputDialog("Enter Developer's Name: ");
+                            String developerDetails = JOptionPane.showInputDialog("Enter Developer's Name: ");
                             int Duration = Integer.parseInt(JOptionPane.showInputDialog("Enter Task Duration\n(in hours):"));
                            
-                            task_manager. taskStatus = JOptionPane.showInputDialog("Enter Task Status(TO DO, DONE, DOING): ");
+                            String taskStatus = JOptionPane.showInputDialog("Enter Task Status(TO DO, DONE, DOING): ");
 
                             //Task task_details = new Task();
-                            
+                            Task task_manager = new Task(taskName, i, taskDescription, developerDetails, Duration, taskStatus);
                             task.add(task_manager);
                             totalHours +=  Duration;
+                            
+                            JOptionPane.showMessageDialog(null, task_manager.printTaskDetails());
+                        }
                             
                             //add to array list
                           //  task_details.Tasks(taskName, taskDescription, developerDetails, taskDuration, taskStatus);
@@ -148,12 +150,12 @@ public class BONNYPOEPART2 {
 //                            //call constructor
 //                            Task obj = new Task();
                             //Display the task details
-                            JOptionPane.showMessageDialog(null, task_manager.printTaskDetails(task_manager.taskName,task_manager. taskDescription, task_manager.taskID, task_manager.developerDetails,task_manager.Duration, task_manager.taskStatus));
                             
+                        
                             JOptionPane.showMessageDialog(null, "The total duration is:" + totalHours);
      
                         }
     }
-}
+
                                       
   
