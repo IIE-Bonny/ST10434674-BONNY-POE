@@ -20,13 +20,14 @@ public class BONNYPOEPART2 {
 
        
 
-        // object for a scanner
-        Scanner sc = new Scanner(System.in);
+    
 
         //declare variables
         String username;
         String password;
         int taskCount = 0;
+        
+       
 
         //Promting the user for username and password
         String name = JOptionPane.showInputDialog("Enter your name");
@@ -62,18 +63,33 @@ public class BONNYPOEPART2 {
             
               //Task instance
         Task task_manager = new Task();
+        
         boolean convertedBoolean=true;int choice =0;
               //Main loop to keep the application running until the user quits
        
-                String[] option = {"Add Tasks", "Show Report(Coming Soon)", "Quit"};
-             choice = JOptionPane.showOptionDialog(null, "Choose an option", "Menu", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, option, option[0]);
-
+//                String[] option = {"1.Add Tasks", "2.Show Report(Coming Soon)", "3.Quit"};
+//                choice = JOptionPane.showOptionDialog(null, "Choose an option from 1-3", "Menu", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE,null,
+//                 new String[] {"1.Add tasks", "2.Show Report", ".3.Quit"}, "Add task");
+           String input = JOptionPane.showInputDialog("Choose an option\n" +
+                   "1. Add task\n" +
+                   "2. Show Report\n" +
+                   "3. Quit\n\n" +
+                   "Enter the number of your choice");
+           if(input == null || input.trim().isEmpty()){
+               JOptionPane.showMessageDialog(null, "No option selected, try again");
+           }
+           //This parses the string input into an integer
+            choice = Integer.parseInt(input.trim());
                 switch (choice) {
                     case 1:
                         //User selected "Add Task"
                         int numTasks = Integer.parseInt(JOptionPane.showInputDialog("Enter number of tasks:"));
-                        Task[] tasks = new Task[numTasks];
-                        ArrayList<Task> task = new ArrayList<Task>();
+                        
+                        ArrayList<Task> task = new ArrayList<>();
+                        int totalHours = 0;
+                        totalHours +=  task_manager. Duration;
+                        //numTasks = task_manager.taskDuration;
+                       
 
                         //Collect task details and create tasks
                         for (int i = 0; i < numTasks; i++) {
@@ -82,10 +98,10 @@ public class BONNYPOEPART2 {
 
                             //Validate task description length
                           do{
-                                task_manager.taskDescription = JOptionPane.showInputDialog("Task description is too long. Please enter a description less than 50 characters: ");
+                                //task_manager.taskDescription = JOptionPane.showInputDialog("Task description is too long. Please enter a description less than 50 characters: ");
                             }  while (task_manager.taskDescription.length() > 50);
                             task_manager. developerDetails = JOptionPane.showInputDialog("Enter Developer's Name: ");
-                            task_manager. taskDuration = Integer.parseInt(JOptionPane.showInputDialog("Enter Task Duration(in hours):"));
+                            task_manager. Duration = Integer.parseInt(JOptionPane.showInputDialog("Enter Task Duration\n(in hours):"));
                             task_manager. taskStatus = JOptionPane.showInputDialog("Enter Task Status(TO DO, DONE, DOING): ");
 
                             //Task task_details = new Task();
@@ -97,7 +113,7 @@ public class BONNYPOEPART2 {
 //                            //call constructor
 //                            Task obj = new Task();
                             //Display the task details
-                            JOptionPane.showMessageDialog(null, task_manager.printTaskDetails(task_manager.taskName,task_manager. taskDescription, task_manager.developerDetails,task_manager. taskDuration, task_manager.taskStatus));
+                            JOptionPane.showMessageDialog(null, task_manager.printTaskDetails(task_manager.taskName,task_manager. taskDescription, task_manager.developerDetails,task_manager.Duration, task_manager.taskStatus));
                 }
                         ;
 
@@ -107,6 +123,7 @@ public class BONNYPOEPART2 {
                         JOptionPane.showMessageDialog(null, "Coming Soon", "Report", JOptionPane.INFORMATION_MESSAGE);
                         break;
                     case 3:
+                            
                         //User selected "Quit", exit the loop
                        convertedBoolean = false;
                         JOptionPane.showMessageDialog(null, "Exiting EasyKanban\n Goodbye", "Exit", JOptionPane.INFORMATION_MESSAGE);
@@ -115,18 +132,16 @@ public class BONNYPOEPART2 {
                         JOptionPane.showMessageDialog(null, "Invalid Option\n try again\n");
 
                 }
+                
             
            
         }
        
         
-
+         Task task_manager = new Task();
 
         //Calculate the total duration of all tasks
-        int totalDuration = 0;
-        //for(Task task : tasks){
-        //totalDuration += task_manager.returnTotalHours();
-        //}
-        JOptionPane.showMessageDialog(null, "Total task Duration: " + totalDuration + "hours");
+         JOptionPane.showMessageDialog(null, "The total duration is:" + task_manager.returnTotalHours());
+         
     }
 }

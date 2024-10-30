@@ -4,6 +4,7 @@
  */
 package com.mycompany.bonnypoe.part2;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 import javax.swing.*;
 
@@ -17,7 +18,9 @@ public class Task {
     public int taskNumber= 0;
     public String taskDescription = "";
     public String developerDetails = "";
-    public int taskDuration = 0;
+    public double Duration = 0;
+    public int totalDuration = 0;
+    public int numTasks = 0;
     public String taskID = "";
     public String taskStatus = "";
     
@@ -40,37 +43,42 @@ public class Task {
     public String createTaskID(){
        String taskNamePart;
        String developerPart;
-       if(taskName.length() >= 2){
-           taskNamePart = taskName.substring(0,2).toUpperCase();
-       }else{
-           taskNamePart = taskName.toUpperCase();
-       }
-       if(developerDetails.length() >= 3){
-           developerPart = developerDetails.substring(developerDetails.length() - 3).toUpperCase();
-       }else{
-           developerPart = developerDetails.toUpperCase();
-       }
+       
+       taskNamePart = taskName.substring(0,2).toUpperCase();
+        developerPart = developerDetails.substring(developerDetails.length() - 3).toUpperCase();
+//       if(taskName.length() >= 2 && developerDetails.length() >= 50 ){
+//            taskNamePart = taskName.substring(0,2).toUpperCase();
+//            //taskNamePart = taskName.toUpperCase();
+//            developerPart = developerDetails.substring(developerDetails.length() - 3).toUpperCase();
+//          // developerPart = developerDetails.toUpperCase();
+//       }else{
+//          JOptionPane.showMessageDialog(null, "Error encountered while formatting task ID");
+//       }if(taskName.length() >= 2 && developerDetails.length() >= 50 ){
+//       
+
+       
         return taskNamePart + ":" + taskNumber + ":" + developerPart;
     }
     //Returns the task information as a formatted string
     //This method returns the full task details of each task
-    public String printTaskDetails(String taskName, String taskDescription, String developerDetails,int  taskDuration, String taskStatus){
+    public String printTaskDetails(String taskName, String taskDescription, String developerDetails,double  Duration, String taskStatus){
         return "Task ID:" + taskID + "\nTask Name:" 
                 + taskName + "\nTaskNumber: " 
                 + taskNumber +"\nTaskDescription: " 
                 + taskDescription + "\nDeveloper: " +developerDetails 
-                + "\nDuration: " + taskDuration + "\nhours\nstatus: " + taskStatus;
+                + "\nDuration: " + Duration + "\nhours\nstatus: " + taskStatus;
         
     } 
     
    
-        
-        
+        private static List<Integer> totalTaskDuration = new ArrayList<>();
     //returnTotalHours method
     //This method returns the total combined houurs of all tasks
-    public int returnTotalHours(){
-        taskDuration = 0;
+    public double returnTotalHours(){
         
-        return taskDuration;
+        
+            return  Duration;
+        }
+        
     }
-}
+
