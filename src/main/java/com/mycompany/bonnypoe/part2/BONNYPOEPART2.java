@@ -17,10 +17,8 @@ public class BONNYPOEPART2 {
 
         //Login instance
         Login login_checks = new Login();
+        
 
-       
-
-    
 
         //declare variables
         String username;
@@ -106,6 +104,7 @@ public class BONNYPOEPART2 {
 
          
     }
+
     private static void addTasks(){
         int numTasks = Integer.parseInt(JOptionPane.showInputDialog("Enter number of tasks:"));
         ArrayList<Task> task = new ArrayList<>();
@@ -136,7 +135,7 @@ public class BONNYPOEPART2 {
                            
                             String taskStatus = JOptionPane.showInputDialog("Enter Task Status(TO DO, DONE, DOING): ");
 
-                            //Task task_details = new Task();
+                            
                             Task task_manager = new Task(taskName, i, taskDescription, developerDetails, Duration, taskStatus);
                             task.add(task_manager);
                             totalHours +=  Duration;
@@ -144,18 +143,195 @@ public class BONNYPOEPART2 {
                             JOptionPane.showMessageDialog(null, task_manager.printTaskDetails());
                         }
                             
-                            //add to array list
-                          //  task_details.Tasks(taskName, taskDescription, developerDetails, taskDuration, taskStatus);
-                          
-//                            //call constructor
-//                            Task obj = new Task();
                             //Display the task details
                             
                         
                             JOptionPane.showMessageDialog(null, "The total duration is:" + totalHours);
      
                         }
-    }
+    
+private static ArrayList<String> developer = new ArrayList<>();
+private static ArrayList<String> taskNames = new ArrayList<>();
+private static ArrayList<String> taskIDs = new ArrayList<>();
+private static ArrayList<Integer> taskDurations = new ArrayList<>();
+private static ArrayList<String> taskStatuses = new ArrayList<>();
+/**
+ * Display the task report menu and handle user selection
+ */
+private static void showReport(){
+String input = JOptionPane.showInputDialog("Report Menu:\n" +
+"1. Display All tasks\n" +
+"2. Show Task with Status 'Done'\n" +
+"3. Show Task with Longest Duration\n"+
+"4. Search for Task by Name\n" +
+"5. Search for Tasks by Developer\n" +
+"6.Delete a Task by Name\n" +
+"Enter the number of your choice:");
 
-                                      
-  
+if(input == null || input.trim().isEmpty()){
+JOptionPane.showMessageDialog(null, "No option selected, returning to main menu.");
+return;
+}
+int choice = Integer.parseInt(input.trim());
+
+switch(choice){
+case 1:
+displayAllTasks();
+case 2:
+displayDoneTasks();
+case 3:
+displayLongestTask();
+case 4:
+searchTaskByName();
+case 5:
+searchTasksByDeveloper();
+case 6:
+deleteTaskByName();
+default:
+JOptionPane.showMessageDialog(null, "Invalid option, returning to main menu.");
+}
+}
+/**
+ * Display all tasks stored in the system.
+ */
+private static void displayAllTasks(){
+StringBuilder  allTasks = new StringBuilder("All Tasks:\n\n");
+
+for(int i = 0; i < taskNames.size(); i++){
+allTasks.append("Task ID:").append(taskIDs.get(i)).append("\n"
++ "").append("Task Name:").append(taskNames.get(i)).append("\n"
++ "").append(developer.get(i)).append("\n"
++ "").append(taskDurations.get(i)).append("hours\n").append("Status:").append(taskStatuses.get(i)).append("\n"
++ "").append("------------------------------------------\n");
+}
+JOptionPane.showMessageDialog(null, allTasks.toString());
+}
+/**
+ * Display tasks with status Done
+ */
+private static void displayDoneTasks(){
+StringBuilder doneTasks = new StringBuilder("Tasks with status 'Done':\n\n");
+
+for(int i = 0; i < taskStatuses.size(); i++){
+if(taskStatuses.get(i).equalsIgnoreCase("Done")){
+doneTasks.append("Task Name:").append(taskNames.get(i)).append("\n"
++ "").append("Developer:").append(developer.get(i)).append("\n"
++ "").append("Duration:").append(taskDurations.get(i)).append("hours\n").append("--------------------------------\n");
+}
+}
+JOptionPane.showMessageDialog(null, doneTasks.toString());
+}
+/**
+ * Display the task with the longest duration
+ */
+private static void displayLongestTask(){
+int maxIndex = 0;
+
+for(int i = 1; i < taskDurations.size(); i++){
+if(taskDurations.get(i) > taskDurations.get(maxIndex)){
+maxIndex = i;
+}
+}
+JOptionPane.showMessageDialog(null, "Task with the longest duration:\n"
++ "Task Name:" +
+taskNames.get(maxIndex) + "\n" +
+"Developer:\n" +
+developer.get(maxIndex) + "\n" +
+"Duration:" +
+taskDurations.get(maxIndex) + 
+"hours");
+}
+
+/**
+ * Search for a task by its name.
+ */
+private static void searchTaskByName(){
+String name = JOptionPane.showInputDialog("Enter the Task Name to search:");
+
+//to check if entered matches a Task Name
+boolean found = false;
+
+StringBuilder result = new StringBuilder("Search Results:\n\n");
+
+for(int i = 0; i < taskNames.size(); i++){
+found = true;
+result.append("Task ID:").append(taskIDs.get(i)).append("\n" +
+"").append("Task Name:").append(taskNames.get(i)).append("\n" +
+"").append("Developer:").append(developer.get(i)).append("\n" +
+"").append("Duration:").append(taskDurations.get(i)).append("hours" +
+"\n").append(taskStatuses.get(i)).append("\n").append("-----------------------------------\n");
+}
+
+if(found){
+JOptionPane.showMessageDialog(null,result.toString());
+}else{
+JOptionPane.showMessageDialog(null, "No task found with the name" +
+name + ".");
+}
+}
+
+/**
+ * Search for all tasks assigned to a specific developer
+ */
+    private static void searchTasksByDeveloper(){
+String developer = JOptionPane.showInputDialog("Enter the Developer's Name to search");
+
+//To track if match is found
+boolean found = false;
+
+StringBuilder result = new StringBuilder("Task assigned to" + developer + "\n\n");
+
+for(int i =0; i < developer.size(); i++){
+if(developer.get(i).equalsIngnoreCase(developer)){
+//case sensetive match
+found = true;
+result.append("Task ID:").append(taskIDs.get(i)).append("\n" +
+"").append("Task Name:").append(taskNames.get(i)).append("\n" +
+"").append("Status:").append(taskStatuses.get(i)).append("\n" +
+"").append("--------------------------------------------\n");
+}
+}
+
+if(found){
+JOptionPane.showMessageDialog(null, result.toString());
+}else{
+JOptionPane.showMessageDialog(null, "No task found assigned to" + developer + "");
+}
+} 
+
+/**
+ * Delete a task by its name
+ */
+  private static void deleteTaskByName(){
+String name = JOptionPane.showInputDialog("Enter the Task Name to delete:");
+
+for(int i = 0; i < taskNames.size(); i++){
+if(taskNames.get(i).equalsIgnoreCase(name)){
+//Case sensitive math
+//Remove task details from all parallel arrays
+
+developer.remove(i);
+taskNames.remove(i);
+taskIDs.remove(i);
+taskDurations.remove(i);
+
+JOptionPane.showMessageDialog(null, "Task" + name + "has been successfully deleted");
+//Exit after deleting the task
+return;
+}
+}
+//if there is no match found
+JOptionPane.showMessageDialog(null, "No task found with the name" + name + ".");
+}
+}
+
+
+
+
+
+
+
+
+
+
+
