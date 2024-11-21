@@ -89,7 +89,7 @@ public class BONNYPOEPART2 {
                         
                     case 2:
                         //User selected "Show Report",which is not yet available
-                        JOptionPane.showMessageDialog(null, "Coming Soon", "Report", JOptionPane.INFORMATION_MESSAGE);
+                        JOptionPane.showMessageDialog(null, "Show Report..Coming Soon", "Report", JOptionPane.INFORMATION_MESSAGE);
                         
                     case 3:
                         //User selected "Display all task"
@@ -187,11 +187,11 @@ public class BONNYPOEPART2 {
      * PART 3
      */
     
-private static ArrayList<String> developers = new ArrayList<>();
-private static ArrayList<String> taskNames = new ArrayList<>();
-private static ArrayList<String> taskIDs = new ArrayList<>();
-private static ArrayList<Integer> taskDurations = new ArrayList<>();
-private static ArrayList<String> taskStatuses = new ArrayList<>();
+public static ArrayList<String> developers = new ArrayList<>();
+public static ArrayList<String> taskNames = new ArrayList<>();
+public static ArrayList<String> taskIDs = new ArrayList<>();
+public static ArrayList<Integer> taskDurations = new ArrayList<>();
+public static ArrayList<String> taskStatuses = new ArrayList<>();
 /**
  * Display the task report menu and handle user selection
  
@@ -233,7 +233,7 @@ JOptionPane.showMessageDialog(null, "Invalid option, returning to main menu.");
 /**
  * Display all tasks stored in the system.
  */
-private static void displayAllTasks(){
+public static void displayAllTasks(){
 StringBuilder  allTasks = new StringBuilder("All Tasks:\n\n");
 
 for(int i = 0; i < taskNames.size(); i++){
@@ -248,7 +248,7 @@ JOptionPane.showMessageDialog(null, allTasks.toString());
 /**
  * Display tasks with status Done
  */
-private static void displayDoneTasks(){
+public static void displayDoneTasks(){
 StringBuilder doneTasks = new StringBuilder("Tasks with status 'Done':\n\n");
 
 for(int i = 0; i < taskStatuses.size(); i++){
@@ -263,7 +263,7 @@ JOptionPane.showMessageDialog(null, doneTasks.toString());
 /**
  * Display the task with the longest duration
  */
-private static void displayLongestTask(){
+public static void displayLongestTask(){
 int maxIndex = 0;
 
 for(int i = 1; i < taskDurations.size(); i++){
@@ -284,7 +284,7 @@ taskDurations.get(maxIndex) +
 /**
  * Search for a task by its name.
  */
-private static void searchTaskByName(){
+public static void searchTaskByName(){
 String name = JOptionPane.showInputDialog("Enter the Task Name to search:");
 
 //to check if entered matches a Task Name
@@ -312,7 +312,7 @@ name + ".");
 /**
  * Search for all tasks assigned to a specific developer
  */
-    private static void searchTasksByDeveloper(){
+    public static void searchTasksByDeveloper(){
 String developer = JOptionPane.showInputDialog("Enter the Developer's Name to search");
 
 //To track if match is found
@@ -343,7 +343,7 @@ JOptionPane.showMessageDialog(null, "No task found assigned to" + developer + ""
 /**
  * Delete a task by its name
  */
-  private static void deleteTaskByName(){
+  public static void deleteTaskByName(){
 String name = JOptionPane.showInputDialog("Enter the Task Name to delete:");
 
 for(int i = 0; i < taskNames.size(); i++){
