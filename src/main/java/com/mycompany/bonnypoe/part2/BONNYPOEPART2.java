@@ -134,10 +134,18 @@ public class BONNYPOEPART2 {
                             int Duration = Integer.parseInt(JOptionPane.showInputDialog("Enter Task Duration\n(in hours):"));
                            
                             String taskStatus = JOptionPane.showInputDialog("Enter Task Status(TO DO, DONE, DOING): ");
-
+                            
+                            developers.add(developerDetails);
+                            taskNames.add(taskName);
+                            //taskIDs.add(task_manager.createTaskID());
+                            taskDurations.add(Duration);
+                            taskStatuses.add(taskStatus);
                             
                             Task task_manager = new Task(taskName, i, taskDescription, developerDetails, Duration, taskStatus);
                             task.add(task_manager);
+                            //Addittion of taskID to an ArrayList
+                            taskIDs.add(task_manager.createTaskID());
+                            //updates total hours
                             totalHours +=  Duration;
                             
                             JOptionPane.showMessageDialog(null, task_manager.printTaskDetails());
@@ -150,7 +158,7 @@ public class BONNYPOEPART2 {
      
                         }
     
-private static ArrayList<String> developer = new ArrayList<>();
+private static ArrayList<String> developers = new ArrayList<>();
 private static ArrayList<String> taskNames = new ArrayList<>();
 private static ArrayList<String> taskIDs = new ArrayList<>();
 private static ArrayList<Integer> taskDurations = new ArrayList<>();
@@ -200,7 +208,7 @@ StringBuilder  allTasks = new StringBuilder("All Tasks:\n\n");
 for(int i = 0; i < taskNames.size(); i++){
 allTasks.append("Task ID:").append(taskIDs.get(i)).append("\n"
 + "").append("Task Name:").append(taskNames.get(i)).append("\n"
-+ "").append(developer.get(i)).append("\n"
++ "").append(developers.get(i)).append("\n"
 + "").append(taskDurations.get(i)).append("hours\n").append("Status:").append(taskStatuses.get(i)).append("\n"
 + "").append("------------------------------------------\n");
 }
@@ -215,7 +223,7 @@ StringBuilder doneTasks = new StringBuilder("Tasks with status 'Done':\n\n");
 for(int i = 0; i < taskStatuses.size(); i++){
 if(taskStatuses.get(i).equalsIgnoreCase("Done")){
 doneTasks.append("Task Name:").append(taskNames.get(i)).append("\n"
-+ "").append("Developer:").append(developer.get(i)).append("\n"
++ "").append("Developer:").append(developers.get(i)).append("\n"
 + "").append("Duration:").append(taskDurations.get(i)).append("hours\n").append("--------------------------------\n");
 }
 }
@@ -236,7 +244,7 @@ JOptionPane.showMessageDialog(null, "Task with the longest duration:\n"
 + "Task Name:" +
 taskNames.get(maxIndex) + "\n" +
 "Developer:\n" +
-developer.get(maxIndex) + "\n" +
+developers.get(maxIndex) + "\n" +
 "Duration:" +
 taskDurations.get(maxIndex) + 
 "hours");
@@ -257,7 +265,7 @@ for(int i = 0; i < taskNames.size(); i++){
 found = true;
 result.append("Task ID:").append(taskIDs.get(i)).append("\n" +
 "").append("Task Name:").append(taskNames.get(i)).append("\n" +
-"").append("Developer:").append(developer.get(i)).append("\n" +
+"").append("Developer:").append(developers.get(i)).append("\n" +
 "").append("Duration:").append(taskDurations.get(i)).append("hours" +
 "\n").append(taskStatuses.get(i)).append("\n").append("-----------------------------------\n");
 }
@@ -281,8 +289,10 @@ boolean found = false;
 
 StringBuilder result = new StringBuilder("Task assigned to" + developer + "\n\n");
 
-for(int i =0; i < developer.size(); i++){
-if(developer.get(i).equalsIngnoreCase(developer)){
+List<String> matchingTasks = new ArrayList<>();
+
+for(int i =0; i < developers.size(); i++){
+if(developers.get(i).equalsIgnoreCase(developer)){
 //case sensetive match
 found = true;
 result.append("Task ID:").append(taskIDs.get(i)).append("\n" +
@@ -310,7 +320,7 @@ if(taskNames.get(i).equalsIgnoreCase(name)){
 //Case sensitive math
 //Remove task details from all parallel arrays
 
-developer.remove(i);
+developers.remove(i);
 taskNames.remove(i);
 taskIDs.remove(i);
 taskDurations.remove(i);
