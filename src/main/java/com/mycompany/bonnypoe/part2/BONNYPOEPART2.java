@@ -69,7 +69,13 @@ public class BONNYPOEPART2 {
            String input = JOptionPane.showInputDialog("Choose an option\n" +
                    "1. Add task\n" +
                    "2. Show Report\n" +
-                   "3. Quit\n\n" +
+                   "3.Display All Tasks\n" +
+                   "4.Show Task with Status 'Done'\n" +
+                   "5.Show task with Longest Duration\n" +
+                   "6.Search for Task by Name\n" +
+                   "7.Search for Task by Developer\n" +
+                   "8.Delete Task by Name\n" +
+                   "9. Quit\n\n" +
                    "Enter the number of your choice");
            if(input == null || input.trim().isEmpty()){
                JOptionPane.showMessageDialog(null, "No option selected, try again");
@@ -80,12 +86,31 @@ public class BONNYPOEPART2 {
                     case 1:
                         //User selected "Add Task"
                         addTasks();
-                        break;
+                        
                     case 2:
                         //User selected "Show Report",which is not yet available
                         JOptionPane.showMessageDialog(null, "Coming Soon", "Report", JOptionPane.INFORMATION_MESSAGE);
-                        break;
+                        
                     case 3:
+                        //User selected "Display all task"
+                        displayAllTasks();
+                        
+                    case 4:
+                        displayDoneTasks();
+                        
+                    case 5:
+                        displayLongestTask();
+                        
+                    case 6:
+                        searchTaskByName();
+                        
+                    case 7:
+                        searchTasksByDeveloper();
+                        
+                    case 8:
+                        deleteTaskByName();
+                        break;
+                    case 9:
                             
                         //User selected "Quit", exit the loop
                        convertedBoolean = false;
@@ -155,8 +180,12 @@ public class BONNYPOEPART2 {
                             
                         
                             JOptionPane.showMessageDialog(null, "The total duration is:" + totalHours);
+                      
      
                         }
+    /**
+     * PART 3
+     */
     
 private static ArrayList<String> developers = new ArrayList<>();
 private static ArrayList<String> taskNames = new ArrayList<>();
@@ -165,7 +194,7 @@ private static ArrayList<Integer> taskDurations = new ArrayList<>();
 private static ArrayList<String> taskStatuses = new ArrayList<>();
 /**
  * Display the task report menu and handle user selection
- */
+ 
 private static void showReport(){
 String input = JOptionPane.showInputDialog("Report Menu:\n" +
 "1. Display All tasks\n" +
@@ -199,6 +228,8 @@ default:
 JOptionPane.showMessageDialog(null, "Invalid option, returning to main menu.");
 }
 }
+* /
+
 /**
  * Display all tasks stored in the system.
  */
